@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const cors = require('cors');
-
+var app = express();
 const whitelist = ['http://localhost:3000'];
 const corsOptions = {
 	origin: function (origin, callback) {
