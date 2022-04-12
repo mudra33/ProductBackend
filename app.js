@@ -10,7 +10,21 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var productsRouter = require('./routes/products');
 
+const cors = require('cors');
 var app = express();
+
+const whitelist = ['http://localhost:3000'];
+const corsOptions = {
+	origin: function (origin, callback) {
+		if (!origin || whitelist.indexOf(origin) !== -1) {
+			callback(null, true);
+		} else {
+			callback(new Error('Not allowed by CORS'));
+		}
+	},
+	credentials: true,
+};
+app.use(cors(corsOptions));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
